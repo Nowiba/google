@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The Sharp Cut - Premium Barber Shop offering haircuts, shaves, and styling.">
-    <title>The Sharp Cut - Barber Shop</title>
-    <!-- Add Font Awesome for icons (optional) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="description" content="Blade & Bristle - Bespoke Barbering Experience. Modern cuts, classic shaves, expert styling.">
+    <title>Blade & Bristle - Bespoke Barbering</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <style>
-        /* --- Base Styles & Variables --- */
+        /* --- Configuration & Base --- */
         :root {
-            --primary-color: #b98d5a; /* Gold/Brown */
-            --secondary-color: #1a1a1a; /* Dark Gray/Black */
-            --light-color: #f4f4f4; /* Light Gray */
+            --primary-color: #c5a47e; /* Sophisticated Gold/Bronze */
+            --secondary-color: #1a1a1a; /* Deep Charcoal */
+            --dark-bg: #111111; /* Near Black */
+            --light-text: #e0e0e0;
+            --medium-text: #a0a0a0;
             --white-color: #ffffff;
-            --dark-color: #333333;
-            --font-primary: 'Georgia', serif; /* Or another classic serif */
-            --font-secondary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            --container-width: 1100px;
-            --section-padding: 60px 0;
+            --accent-dark: #9a7d5a; /* Darker Gold for hover */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Roboto', sans-serif;
+            --container-width: 1200px;
+            --section-padding: 80px 0;
+            --card-bg: #1f1f1f;
+            --border-color: #333333;
         }
 
         * {
@@ -29,20 +35,23 @@
         }
 
         html {
-            scroll-behavior: smooth; /* Enable smooth scrolling */
+            scroll-behavior: smooth;
+            font-size: 16px; /* Base font size */
         }
 
         body {
-            font-family: var(--font-secondary);
-            line-height: 1.6;
-            color: var(--dark-color);
-            background-color: var(--white-color);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: var(--light-text);
+            background-color: var(--dark-bg);
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         img {
             max-width: 100%;
             height: auto;
             display: block;
+            object-fit: cover; /* Ensure images cover their container */
         }
 
         a {
@@ -52,27 +61,33 @@
         }
 
         a:hover {
-            color: #a17a4a; /* Darker primary */
+            color: var(--accent-dark);
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-primary);
-            margin-bottom: 0.8rem;
+            font-family: var(--font-heading);
+            margin-bottom: 1rem;
             line-height: 1.3;
-            color: var(--secondary-color);
+            color: var(--white-color);
+            font-weight: 700;
         }
 
-        h1 { font-size: 3rem; }
-        h2 { font-size: 2.2rem; }
-        h3 { font-size: 1.5rem; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); } /* Responsive font size */
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 1.8rem); }
 
         p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--medium-text);
+            font-weight: 300;
+        }
+        p.lead {
+            font-size: 1.15rem;
+            color: var(--light-text);
+            font-weight: 400;
         }
 
-        ul {
-            list-style: none;
-        }
+        ul { list-style: none; }
 
         .container {
             max-width: var(--container-width);
@@ -82,77 +97,90 @@
 
         .section-padding {
             padding: var(--section-padding);
+            overflow: hidden; /* Contain animations */
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
-            color: var(--secondary-color);
+            margin-bottom: 4rem;
+            position: relative;
         }
-
-        .bg-light {
-            background-color: var(--light-color);
-        }
-
-        .bg-dark {
-            background-color: var(--secondary-color);
-            color: var(--light-color);
-        }
-        .bg-dark h2, .bg-dark h3 {
-            color: var(--white-color);
-        }
-        .bg-dark a {
-            color: var(--primary-color);
-        }
-        .bg-dark a:hover {
-            color: var(--white-color);
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 1rem auto 0;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 25px;
-            border: none;
+            padding: 14px 30px;
+            border: 1px solid var(--primary-color);
             border-radius: 5px;
             cursor: pointer;
             font-size: 1rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
         .btn-primary {
             background-color: var(--primary-color);
-            color: var(--white-color);
+            color: var(--secondary-color);
+            border-color: var(--primary-color);
         }
 
         .btn-primary:hover {
-            background-color: #a17a4a;
+            background-color: var(--accent-dark);
+            border-color: var(--accent-dark);
             color: var(--white-color);
+            transform: translateY(-2px);
         }
 
-        .grid {
-            display: grid;
-            gap: 30px;
+         .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
         }
 
-        .grid-2-cols {
-            grid-template-columns: repeat(2, 1fr);
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            transform: translateY(-2px);
         }
 
-        .grid-3-cols {
-            grid-template-columns: repeat(3, 1fr);
+        .btn:disabled {
+            background-color: #555;
+            border-color: #555;
+            color: #999;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn:disabled:hover {
+            background-color: #555;
+            border-color: #555;
+            color: #999;
         }
 
         /* --- Header & Navigation --- */
         .header {
-            background-color: var(--secondary-color);
-            color: var(--white-color);
+            background-color: rgba(17, 17, 17, 0.9); /* Semi-transparent dark */
+            backdrop-filter: blur(10px);
             padding: 15px 0;
             position: sticky;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
         }
 
         .navbar {
@@ -162,359 +190,401 @@
         }
 
         .logo {
-            font-family: var(--font-primary);
+            font-family: var(--font-heading);
             font-size: 1.8rem;
             font-weight: bold;
-            color: var(--primary-color);
-        }
-        .logo:hover {
             color: var(--white-color);
+            letter-spacing: 1px;
         }
-        /* Uncomment if using a logo image */
-        /*
-        .logo img {
-            height: 40px;
-            vertical-align: middle;
-        }
-        */
+        .logo span { color: var(--primary-color); }
+        .logo img { height: 45px; } /* If using image logo */
 
-        .nav-links {
-            display: flex;
-        }
-
-        .nav-links li {
-            margin-left: 25px;
-        }
-
+        .nav-links { display: flex; }
+        .nav-links li { margin-left: 30px; }
         .nav-links a {
-            color: var(--white-color);
-            padding: 5px 0;
+            color: var(--light-text);
+            padding: 8px 0;
             position: relative;
             font-size: 1rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
         }
-
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -3px;
             left: 0;
             width: 0;
             height: 2px;
             background-color: var(--primary-color);
-            transition: width 0.3s ease;
+            transition: width 0.4s ease;
         }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after { /* Optional active state */
-            width: 100%;
-        }
+        .nav-links a:hover { color: var(--primary-color); }
+        .nav-links a:hover::after { width: 100%; }
 
         .nav-toggle {
-            display: none; /* Hidden by default */
-            background: none;
-            border: none;
+            display: none;
+            background: none; border: none;
             color: var(--white-color);
             font-size: 1.8rem;
             cursor: pointer;
+            z-index: 1100; /* Above nav links */
         }
 
         /* --- Hero Section --- */
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hero-bg.jpg') no-repeat center center/cover;
-            height: 80vh;
+            background: linear-gradient(rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.9)), url('images/hero-bg.jpg') no-repeat center center/cover;
+            min-height: 90vh; /* Use min-height for flexibility */
             display: flex;
-            justify-content: center;
             align-items: center;
             text-align: center;
             color: var(--white-color);
-            padding: 0 20px;
+            position: relative;
+            padding: 100px 20px 50px; /* Add padding for content */
         }
-
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn HeroAnimation 1s ease-out forwards;
+        }
         .hero-content h1 {
-            color: var(--white-color);
-            margin-bottom: 1rem;
-            font-size: 3.5rem; /* Larger for hero */
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
         }
-
         .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--light-text);
+        }
+        .hero-scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite ease-in-out;
         }
 
         /* --- About Section --- */
         .about-section .grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
             align-items: center;
         }
-
-        .about-image img {
+        .about-visual img {
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative; /* For potential pseudo-elements */
         }
+        .about-text h2 { margin-bottom: 1.5rem; }
 
         /* --- Services Section --- */
+        .services-section { background-color: var(--secondary-color); }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
         .service-card {
-            background-color: var(--white-color);
-            padding: 30px 25px;
-            text-align: center;
+            background-color: var(--card-bg);
+            padding: 35px 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
-
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-color);
         }
-
         .service-icon {
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem; /* Slightly smaller icons */
         }
-
-        .service-card h3 {
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-        }
-
+        .service-card h3 { color: var(--white-color); margin-bottom: 0.8rem; }
+        .service-card p { font-size: 0.95rem; color: var(--medium-text); }
         .price {
             display: block;
-            margin-top: 1rem;
-            font-weight: bold;
+            margin-top: 1.5rem;
+            font-weight: 700;
             color: var(--primary-color);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
-        /* --- Gallery Section --- */
+        /* --- Team Section --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        .team-member {
+            text-align: center;
+            background-color: var(--card-bg);
+            padding: 0; /* Padding handled by inner elements */
+            border-radius: 8px;
+            overflow: hidden; /* Clip image */
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-member:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .team-member img {
+            width: 100%;
+            height: 300px; /* Fixed height for consistency */
+            filter: grayscale(50%); /* Subtle desaturation */
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+        .team-member:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+        .team-info { padding: 25px 20px; }
+        .team-info h3 { margin-bottom: 0.3rem; color: var(--primary-color);}
+        .team-info span {
+            display: block;
+            font-style: italic;
+            color: var(--medium-text);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .team-info p { font-size: 0.9rem; color: var(--light-text); }
+
+         /* --- Gallery Section --- */
+        .gallery-section { background-color: var(--secondary-color); }
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
         }
-
-        .gallery-grid img {
-            width: 100%;
-            height: 250px; /* Fixed height */
-            object-fit: cover; /* Crop images to fit */
+        .gallery-item img {
             border-radius: 5px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: transform 0.4s ease, opacity 0.4s ease;
             cursor: pointer;
+            height: 280px; /* Consistent height */
+            width: 100%;
+        }
+        .gallery-item img:hover {
+            transform: scale(1.08);
+            opacity: 0.85;
         }
 
-        .gallery-grid img:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
+         /* --- Testimonials Section --- */
+         /* Using a slider might be better here, but simple grid for now */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-
-        /* --- Testimonials Section --- */
         .testimonial-card {
-            background-color: var(--white-color);
-            padding: 25px;
+            background-color: var(--card-bg);
+            padding: 30px;
             border-left: 5px solid var(--primary-color);
-            margin-bottom: 1rem; /* Adjusted from grid gap */
-            border-radius: 0 5px 5px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative; /* For quote icon */
         }
-
+        .testimonial-card::before { /* Quote icon */
+            content: '\f10d'; /* Font Awesome quote-left */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 15px;
+            left: -15px; /* Position over the border */
+            font-size: 2.5rem;
+            color: rgba(197, 164, 126, 0.2); /* Faded primary color */
+            z-index: 0;
+        }
         .testimonial-card p {
             font-style: italic;
-            margin-bottom: 1rem;
-            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+            position: relative; /* Keep text above quote icon */
+            z-index: 1;
+            font-size: 1.05rem;
         }
-
         .testimonial-card footer {
-            font-weight: bold;
-            color: var(--secondary-color);
-            text-align: right;
-        }
-
-        /* --- Contact Section --- */
-        .contact-intro {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-        }
-
-        .contact-grid {
-            align-items: flex-start; /* Align items to top */
-        }
-
-        .contact-details i {
+            font-weight: 700;
             color: var(--primary-color);
-            margin-right: 10px;
-            width: 20px; /* Align icons */
-            text-align: center;
+            text-align: right;
+            font-size: 1rem;
         }
 
-        .contact-details p {
-            margin-bottom: 0.8rem;
+        /* --- Booking/Contact Section --- */
+        .booking-section { background-color: var(--secondary-color); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr; /* Give form slightly more space */
+            gap: 50px;
+            align-items: flex-start;
+        }
+        .contact-info h3 { color: var(--primary-color); margin-bottom: 1.5rem; }
+        .contact-info p {
             display: flex;
             align-items: center;
+            margin-bottom: 1rem;
+            color: var(--light-text);
         }
-
-        .contact-details h3 {
-            margin-top: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: var(--secondary-color);
+        .contact-info i {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
         }
+        .contact-info a { color: var(--light-text); }
+        .contact-info a:hover { color: var(--primary-color); }
 
-        .contact-form .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-form label {
+        .booking-form h3 { margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: var(--dark-color);
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--light-text);
+            font-size: 0.9rem;
         }
-
-        .contact-form input[type="text"],
-        .contact-form input[type="email"],
-        .contact-form input[type="tel"],
-        .contact-form textarea {
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
+            padding: 14px;
+            border: 1px solid var(--border-color);
             border-radius: 5px;
             font-size: 1rem;
             font-family: inherit;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            transition: border-color 0.3s ease;
         }
-
-        .contact-form textarea {
-            resize: vertical; /* Allow vertical resize */
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
         }
-
-        .contact-form button {
-            width: 100%;
-        }
-
-        .form-note {
-            font-size: 0.9rem;
-            color: #666;
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .form-submit-message {
             margin-top: 1rem;
+            padding: 10px;
+            border-radius: 5px;
             text-align: center;
+            font-weight: bold;
         }
-
+        .form-submit-message.success { background-color: #28a745; color: white; }
+        .form-submit-message.error { background-color: #dc3545; color: white; }
 
         /* --- Footer --- */
         .footer {
+            background-color: var(--dark-bg);
+            color: var(--medium-text);
+            padding: 50px 0 30px;
             text-align: center;
-            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
         }
-
-        .footer-social a {
-            color: var(--light-color);
-            margin: 0 10px;
+        .footer-logo { /* Optional footer logo */
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
             font-size: 1.5rem;
-            transition: color 0.3s ease;
+            color: var(--light-text);
         }
-
+        .footer-logo span { color: var(--primary-color); }
+        .footer-social { margin-bottom: 1.5rem; }
+        .footer-social a {
+            color: var(--medium-text);
+            margin: 0 12px;
+            font-size: 1.4rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block; /* Allows transform */
+        }
         .footer-social a:hover {
             color: var(--primary-color);
+            transform: translateY(-3px);
         }
-
         .footer p {
-            margin-top: 1rem;
             margin-bottom: 0;
             font-size: 0.9rem;
-            color: #aaa; /* Lighter gray for copyright */
         }
 
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* --- Media Queries (Responsiveness) --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* Tablets and smaller desktops */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+            40% { transform: translate(-50%, -15px); }
+            60% { transform: translate(-50%, -8px); }
+        }
+
+        /* Class added by JS for scroll animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsiveness --- */
         @media (max-width: 992px) {
-            .grid-3-cols {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr; /* Stack contact info and form */
-            }
-            .contact-details {
-                margin-bottom: 2rem;
-            }
+            h1 { font-size: clamp(2.2rem, 6vw, 3.5rem); }
+            h2 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-info { margin-bottom: 3rem; text-align: center;}
+            .contact-info p { justify-content: center; }
+            .team-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
         }
 
-        /* Mobile devices */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 1.8rem; }
-            h3 { font-size: 1.3rem; }
-
-            .section-padding {
-                padding: 40px 0;
-            }
-
-            .grid-2-cols,
-            .grid-3-cols {
-                grid-template-columns: 1fr; /* Stack grid items */
-            }
-
-            .navbar {
-                position: relative; /* Needed for absolute positioning of nav links */
-            }
-
-            .nav-toggle {
-                display: block; /* Show hamburger */
-            }
-
+            .section-padding { padding: 60px 0; }
+            .nav-toggle { display: block; }
             .nav-links {
-                display: none; /* Hide links by default */
+                display: none;
                 flex-direction: column;
                 position: absolute;
                 top: 100%; /* Position below header */
                 left: 0;
                 width: 100%;
-                background-color: var(--secondary-color);
-                padding: 15px 0;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+                background-color: rgba(17, 17, 17, 0.98);
+                backdrop-filter: blur(5px);
+                padding: 20px 0;
+                border-top: 1px solid var(--border-color);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             }
+            .nav-links.nav-active { display: flex; }
+            .nav-links li { margin: 10px 0; text-align: center; }
+            .nav-links a { padding: 12px 20px; display: block; }
+             .nav-links a::after { display: none; /* Remove underline on mobile nav */ }
 
-            .nav-links.nav-active {
-                display: flex; /* Show links when active */
-            }
+            .hero-section { min-height: 70vh; padding-top: 80px; }
+            .hero-content h1 { font-size: clamp(2rem, 7vw, 3rem); }
+            .hero-content p { font-size: 1rem; }
+            .about-section .grid { gap: 30px; }
+            .about-visual { order: -1; margin-bottom: 2rem; } /* Image first */
+            .service-grid { grid-template-columns: 1fr; } /* Stack services */
+            .testimonial-grid { grid-template-columns: 1fr; }
+        }
 
-            .nav-links li {
-                margin: 10px 0;
-                text-align: center;
-            }
-            .nav-links a {
-                padding: 10px 20px;
-                display: block; /* Make entire area clickable */
-            }
-             .nav-links a::after {
-                 display: none; /* Remove underline effect on mobile nav */
-             }
-
-            .hero-section {
-                height: 60vh;
-            }
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-             .hero-content p {
-                font-size: 1rem;
-            }
-
-            .about-image {
-                order: -1; /* Put image above text on mobile */
-                margin-bottom: 1.5rem;
-            }
-
-             .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller gallery items */
-                gap: 10px;
-            }
-            .gallery-grid img {
-                height: 150px;
-            }
+        @media (max-width: 480px) {
+            .container { padding: 0 15px; }
+            .btn { padding: 12px 25px; font-size: 0.9rem;}
+            .hero-section { min-height: 60vh; }
+            .footer { padding: 40px 0 20px;}
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+             .gallery-item img { height: 200px; }
         }
 
     </style>
@@ -522,18 +592,19 @@
 <body>
 
     <!-- Header & Navigation -->
-    <header class="header">
+    <header class="header" id="header">
         <nav class="navbar container">
             <a href="#hero" class="logo">
-                <!-- <img src="images/logo.png" alt="The Sharp Cut Logo"> -->
-                 The Sharp Cut
+                <!-- <img src="images/logo-light.png" alt="Blade & Bristle Logo"> -->
+                Blade <span>&</span> Bristle
             </a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#team">Barbers</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Book/Contact</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#booking" class="btn btn-primary btn-small-nav">Book Now</a></li>
             </ul>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <i class="fas fa-bars"></i>
@@ -545,151 +616,189 @@
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <div class="hero-content container">
-                <h1>Classic Cuts & Modern Styles</h1>
-                <p>Experience the art of traditional barbering with a modern twist.</p>
-                <a href="#contact" class="btn btn-primary">Book Appointment</a>
+                <h1>Crafting Confidence, One Cut at a Time</h1>
+                <p class="lead">Experience bespoke barbering in a relaxed atmosphere. Precision cuts, classic shaves, and modern styling by expert hands.</p>
+                <a href="#booking" class="btn btn-primary">Request Appointment</a>
+                <a href="#services" class="btn btn-secondary">View Services</a>
             </div>
+            <a href="#about" class="hero-scroll-down" aria-label="Scroll down">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </section>
 
         <!-- About Us Section -->
-        <section id="about" class="about-section section-padding">
-            <div class="container grid grid-2-cols">
-                <div class="about-image">
-                    <img src="images/about-us.jpg" alt="Inside The Sharp Cut barber shop">
-                </div>
+        <section id="about" class="about-section section-padding fade-in-section">
+            <div class="container grid">
                 <div class="about-text">
-                    <h2>About The Sharp Cut</h2>
-                    <p>Founded in 2010, The Sharp Cut is more than just a place to get a haircut or shave; it's an experience. We are dedicated to preserving the time-honored traditions of barbering while embracing modern techniques.</p>
-                    <p>Our skilled barbers are passionate about their craft and committed to providing exceptional service in a relaxed and welcoming atmosphere. Sit back, relax, and let us take care of you.</p>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 1.5rem; margin-left:0;">Our Story</h2>
+                    <h3>More Than Just a Haircut</h3>
+                    <p>Blade & Bristle was founded on the belief that a trip to the barber should be an experience, not just an errand. We blend time-honored techniques with contemporary style, creating a space where tradition meets modern sophistication.</p>
+                    <p>Our passion lies in the details – the perfect fade, the sharpest line-up, the most relaxing hot towel shave. We're dedicated to providing exceptional service and building lasting relationships with our clients.</p>
+                    <a href="#team" class="btn btn-secondary">Meet Our Team</a>
+                </div>
+                <div class="about-visual">
+                    <img src="images/about-visual.jpg" alt="Stylish interior of Blade & Bristle barber shop">
                 </div>
             </div>
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="services-section section-padding bg-light">
+        <section id="services" class="services-section section-padding fade-in-section">
             <div class="container">
-                <h2 class="section-title">Our Services</h2>
-                <div class="grid grid-3-cols">
+                <h2 class="section-title">Our Expertise</h2>
+                <div class="service-grid">
                     <div class="service-card">
-                        <i class="fas fa-cut fa-3x service-icon"></i>
-                        <h3>Classic Haircut</h3>
-                        <p>A timeless cut tailored to your style, finished with a straight razor neck shave.</p>
+                        <i class="fas fa-cut service-icon"></i>
+                        <h3>Signature Cut</h3>
+                        <p>Consultation, precision haircut tailored to you, style, and finish. Includes wash & straight razor neck shave.</p>
+                        <span class="price">$50</span>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-soap service-icon"></i>
+                        <h3>Luxury Hot Shave</h3>
+                        <p>The ultimate relaxation. Hot towels, premium pre-shave oils, rich lather, and a close straight razor shave.</p>
+                        <span class="price">$55</span>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-hand-scissors service-icon"></i>
+                        <h3>Beard Sculpting</h3>
+                        <p>Expert shaping, trimming, and line-up using clippers and/or shears. Finished with beard oil/balm.</p>
                         <span class="price">$35</span>
                     </div>
-                    <div class="service-card">
-                        <i class="fas fa-soap fa-3x service-icon"></i> <!-- Using 'soap' for shave icon -->
-                        <h3>Hot Towel Shave</h3>
-                        <p>A traditional straight razor shave with hot towels, pre-shave oil, and rich lather.</p>
-                        <span class="price">$40</span>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-hand-scissors fa-3x service-icon"></i>
-                        <h3>Beard Trim & Shape</h3>
-                        <p>Expert shaping and trimming to keep your beard looking sharp and well-groomed.</p>
-                        <span class="price">$25</span>
+                     <div class="service-card">
+                        <i class="fas fa-user-tie service-icon"></i>
+                        <h3>The Full Works</h3>
+                        <p>Combine our Signature Cut with a Luxury Hot Shave or Beard Sculpting for the complete grooming package.</p>
+                        <span class="price">$80+</span>
                     </div>
                      <div class="service-card">
-                        <i class="fas fa-user-tie fa-3x service-icon"></i>
-                        <h3>The Works</h3>
-                        <p>Combine a classic haircut with a hot towel shave for the ultimate grooming experience.</p>
-                        <span class="price">$70</span>
+                        <i class="fas fa-wind service-icon"></i> <!-- Representing a quick service -->
+                        <h3>Express Cut</h3>
+                        <p>A sharp, clean cut for those on the go. No wash or neck shave. Perfect for maintenance.</p>
+                        <span class="price">$35</span>
                     </div>
                      <div class="service-card">
-                        <i class="fas fa-child fa-3x service-icon"></i>
-                        <h3>Kid's Cut (Under 12)</h3>
-                        <p>Stylish and comfortable cuts for the young gentlemen.</p>
-                        <span class="price">$25</span>
-                    </div>
-                     <div class="service-card">
-                        <i class="fas fa-palette fa-3x service-icon"></i> <!-- Using 'palette' for color -->
-                        <h3>Hair Coloring</h3>
-                        <p>Subtle or bold coloring services to enhance your look (consultation required).</p>
-                        <span class="price">Starts at $50</span>
+                        <i class="fas fa-palette service-icon"></i>
+                        <h3>Color Services</h3>
+                        <p>From subtle grey blending to bold creative color. Consultation required prior to booking.</p>
+                        <span class="price">From $60</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Gallery Section -->
-        <section id="gallery" class="gallery-section section-padding">
+        <!-- Team Section -->
+        <section id="team" class="team-section section-padding fade-in-section">
             <div class="container">
-                <h2 class="section-title">Style Gallery</h2>
+                <h2 class="section-title">Meet the Artisans</h2>
+                <div class="team-grid">
+                    <article class="team-member">
+                        <img src="images/barber1.jpg" alt="Portrait of James 'The Fade' Miller">
+                        <div class="team-info">
+                            <h3>James Miller</h3>
+                            <span>Master Barber / Fade Specialist</span>
+                            <p>With 15 years under his belt, James delivers flawless fades and sharp, modern styles with unmatched precision.</p>
+                        </div>
+                    </article>
+                    <article class="team-member">
+                        <img src="images/barber2.jpg" alt="Portrait of Sofia 'The Shave' Rossi">
+                        <div class="team-info">
+                            <h3>Sofia Rossi</h3>
+                            <span>Senior Barber / Shave Expert</span>
+                            <p>Sofia brings artistry to classic cuts and provides the most relaxing, meticulous hot towel shaves in town.</p>
+                        </div>
+                    </article>
+                    <article class="team-member">
+                        <img src="images/barber3.jpg" alt="Portrait of Alex 'The Stylist' Chen">
+                        <div class="team-info">
+                            <h3>Alex Chen</h3>
+                            <span>Barber & Stylist</span>
+                            <p>Alex excels in textured crops, longer styles, and creative cuts, always staying ahead of the latest trends.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+         <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section section-padding fade-in-section">
+            <div class="container">
+                <h2 class="section-title">Style Showcase</h2>
                 <div class="gallery-grid">
-                    <img src="images/gallery1.jpg" alt="Stylish haircut example 1">
-                    <img src="images/gallery2.jpg" alt="Stylish haircut example 2">
-                    <img src="images/gallery3.jpg" alt="Beard trim example">
-                    <img src="images/gallery4.jpg" alt="Stylish haircut example 4">
+                    <div class="gallery-item"><img src="images/gallery1.jpg" alt="Modern fade haircut example"></div>
+                    <div class="gallery-item"><img src="images/gallery2.jpg" alt="Classic side part hairstyle"></div>
+                    <div class="gallery-item"><img src="images/gallery3.jpg" alt="Textured crop haircut"></div>
+                    <div class="gallery-item"><img src="images/gallery4.jpg" alt="Sharp beard trim and line up"></div>
+                    <div class="gallery-item"><img src="images/gallery5.jpg" alt="Longer men's hairstyle example"></div>
+                    <div class="gallery-item"><img src="images/gallery6.jpg" alt="Skin fade haircut detail"></div>
                      <!-- Add more images as needed -->
                 </div>
             </div>
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials-section section-padding bg-light">
+        <section id="testimonials" class="testimonials-section section-padding fade-in-section">
              <div class="container">
-                <h2 class="section-title">What Our Clients Say</h2>
-                <div class="grid grid-2-cols">
+                <h2 class="section-title">Client Experiences</h2>
+                <div class="testimonial-grid">
                     <blockquote class="testimonial-card">
-                        <p>"Best haircut I've had in years! Professional staff, great atmosphere, and a perfect cut. Highly recommend The Sharp Cut."</p>
-                        <footer>- John D.</footer>
+                        <p>"Absolutely the best barber experience I've ever had. James listened to exactly what I wanted and executed it perfectly. The atmosphere is top-notch too."</p>
+                        <footer>- David L.</footer>
                     </blockquote>
                     <blockquote class="testimonial-card">
-                        <p>"The hot towel shave was incredibly relaxing and expertly done. I left feeling refreshed and looking sharp. Will definitely be back."</p>
-                        <footer>- Michael S.</footer>
+                        <p>"Sofia's hot towel shave is pure bliss. So relaxing and my skin has never felt smoother. Highly recommend treating yourself!"</p>
+                        <footer>- Mark R.</footer>
                     </blockquote>
                      <blockquote class="testimonial-card">
-                        <p>"Took my son for his first proper barber experience. They were patient, friendly, and gave him a fantastic cut. He loved it!"</p>
-                        <footer>- Sarah K.</footer>
-                    </blockquote>
-                     <blockquote class="testimonial-card">
-                        <p>"Consistent quality every single time. The barbers really know their stuff and take pride in their work. My go-to spot."</p>
-                        <footer>- David R.</footer>
+                        <p>"Walked in looking rough, walked out feeling like a new man. Alex knew exactly how to handle my tricky hair type. Great vibe, great service."</p>
+                        <footer>- Chris P.</footer>
                     </blockquote>
                 </div>
             </div>
         </section>
 
-        <!-- Contact/Booking Section -->
-        <section id="contact" class="contact-section section-padding">
+        <!-- Booking/Contact Section -->
+        <section id="booking" class="booking-section section-padding fade-in-section">
             <div class="container">
-                <h2 class="section-title">Book Your Appointment</h2>
-                <p class="contact-intro">Ready for a fresh look? Call us or fill out the form below to request an appointment. Walk-ins welcome based on availability.</p>
-                <div class="grid grid-2-cols contact-grid">
-                    <div class="contact-details">
-                        <h3>Contact Information</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> 123 Barber Street, Anytown, ST 12345</p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+1234567890">(123) 456-7890</a></p>
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:info@thesharpcut.com">info@thesharpcut.com</a></p>
+                <h2 class="section-title">Request Your Appointment</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 456 Grooming Ave, Suite B<br>       Metropolis, ST 54321</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+15551234567">(555) 123-4567</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:bookings@bladeandbristle.com">bookings@bladeandbristle.com</a></p>
+
                         <h3>Opening Hours</h3>
-                        <p>Mon - Fri: 9:00 AM - 7:00 PM</p>
-                        <p>Saturday: 9:00 AM - 5:00 PM</p>
-                        <p>Sunday: Closed</p>
+                        <p><i class="far fa-clock"></i> Tue - Fri: 10:00 AM - 7:00 PM</p>
+                        <p><i class="far fa-clock"></i> Saturday: 9:00 AM - 5:00 PM</p>
+                        <p><i class="far fa-clock"></i> Sun & Mon: Closed</p>
+                        <p style="font-size: 0.9rem; color: var(--medium-text); margin-top: 1.5rem;"><i class="fas fa-info-circle"></i> Please note: Submitting this form is a request. We will contact you to confirm your appointment time.</p>
                     </div>
-                    <div class="contact-form">
-                        <h3>Send Us a Message</h3>
+                    <div class="booking-form">
+                        <h3>Send Us Your Request</h3>
                         <form id="booking-form">
                             <div class="form-group">
-                                <label for="name">Name:</label>
+                                <label for="name">Full Name:</label>
                                 <input type="text" id="name" name="name" required>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email:</label>
+                                <label for="email">Email Address:</label>
                                 <input type="email" id="email" name="email" required>
                             </div>
                             <div class="form-group">
-                                <label for="phone">Phone (Optional):</label>
-                                <input type="tel" id="phone" name="phone">
+                                <label for="phone">Phone Number:</label>
+                                <input type="tel" id="phone" name="phone" required>
                             </div>
                              <div class="form-group">
                                 <label for="service">Preferred Service (Optional):</label>
-                                <input type="text" id="service" name="service">
+                                <input type="text" id="service" name="service" placeholder="e.g., Signature Cut, Beard Sculpting">
                             </div>
                             <div class="form-group">
-                                <label for="message">Message/Preferred Date & Time:</label>
-                                <textarea id="message" name="message" rows="4" required></textarea>
+                                <label for="message">Preferred Date(s) / Time(s) & Message:</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Let us know your availability or any specific requests..."></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Send Request</button>
-                            <p class="form-note">Note: This form sends a request. We will contact you to confirm your appointment.</p>
+                            <button type="submit" id="submit-button" class="btn btn-primary" style="width: 100%;">Send Request</button>
+                            <div id="form-submit-message" class="form-submit-message" style="display: none;"></div>
                         </form>
                     </div>
                 </div>
@@ -698,47 +807,62 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer section-padding bg-dark">
+    <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-social">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                </div>
-                <p>© <span id="year"></span> The Sharp Cut. All Rights Reserved.</p>
+            <!-- Optional Footer Logo -->
+            <!-- <div class="footer-logo">Blade <span>&</span> Bristle</div> -->
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                 <a href="#" aria-label="Yelp" target="_blank" rel="noopener noreferrer"><i class="fab fa-yelp"></i></a>
             </div>
+            <p>© <span id="year"></span> Blade & Bristle. All Rights Reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem;">Website by [Your Name/AI]</p>
         </div>
     </footer>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore-compat.js"></script>
+
     <script>
+        // --- START: Firebase Configuration ---
+        // IMPORTANT: Replace with your actual Firebase project configuration!
+        const firebaseConfig = {
+          apiKey: "YOUR_API_KEY",
+          authDomain: "YOUR_AUTH_DOMAIN",
+          projectId: "YOUR_PROJECT_ID",
+          storageBucket: "YOUR_STORAGE_BUCKET",
+          messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+          appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore(); // Get Firestore instance
+        // --- END: Firebase Configuration ---
+
+
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- Responsive Navigation ---
+            // --- Mobile Navigation ---
             const navToggle = document.getElementById('nav-toggle');
             const navLinks = document.getElementById('nav-links');
+            const navLinkItems = navLinks.querySelectorAll('a');
 
             if (navToggle && navLinks) {
                 navToggle.addEventListener('click', () => {
-                    navLinks.classList.toggle('nav-active');
-
-                    // Toggle aria-expanded attribute for accessibility
-                    const expanded = navLinks.classList.contains('nav-active');
-                    navToggle.setAttribute('aria-expanded', expanded);
-
-                    // Optional: Change hamburger icon to 'X'
+                    const isActive = navLinks.classList.toggle('nav-active');
+                    navToggle.setAttribute('aria-expanded', isActive);
+                    // Optional: Change icon
                      const icon = navToggle.querySelector('i');
-                     if (expanded) {
-                         icon.classList.remove('fa-bars');
-                         icon.classList.add('fa-times');
-                     } else {
-                         icon.classList.remove('fa-times');
-                         icon.classList.add('fa-bars');
-                     }
+                     icon.classList.toggle('fa-bars', !isActive);
+                     icon.classList.toggle('fa-times', isActive);
                 });
 
-                // Close mobile nav when a link is clicked
-                navLinks.querySelectorAll('a').forEach(link => {
+                // Close nav when a link is clicked
+                navLinkItems.forEach(link => {
                     link.addEventListener('click', () => {
                         if (navLinks.classList.contains('nav-active')) {
                             navLinks.classList.remove('nav-active');
@@ -751,9 +875,38 @@
                 });
             }
 
-            // --- Smooth Scrolling ---
-            // CSS `scroll-behavior: smooth;` in the <style> section handles this.
-            // No additional JS needed for basic smooth scroll.
+            // --- Sticky Header Background Change on Scroll ---
+            const header = document.getElementById('header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.style.backgroundColor = 'rgba(17, 17, 17, 0.98)'; // More opaque on scroll
+                    } else {
+                        header.style.backgroundColor = 'rgba(17, 17, 17, 0.9)'; // Back to initial
+                    }
+                });
+            }
+
+
+            // --- Scroll Animations (Intersection Observer) ---
+            const fadeElements = document.querySelectorAll('.fade-in-section');
+
+            const observerOptions = {
+                root: null, // relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, observerOptions);
+
+            fadeElements.forEach(el => observer.observe(el));
 
 
             // --- Update Footer Year ---
@@ -762,23 +915,79 @@
                 yearSpan.textContent = new Date().getFullYear();
             }
 
-            // --- Basic Form Submission Simulation ---
-            // Prevents actual submission and shows a simple message
-            // IMPORTANT: This does NOT actually send any data. You need a backend for that.
+            // --- Firebase Booking Form Submission ---
             const bookingForm = document.getElementById('booking-form');
-            if (bookingForm) {
-                bookingForm.addEventListener('submit', (e) => {
-                    e.preventDefault(); // Stop the form from submitting traditionally
+            const submitButton = document.getElementById('submit-button');
+            const formMessage = document.getElementById('form-submit-message');
 
-                    // You can add more validation here if needed
+            if (bookingForm && db && submitButton && formMessage) {
+                bookingForm.addEventListener('submit', async (e) => {
+                    e.preventDefault(); // Prevent default HTML form submission
 
-                    alert('Thank you for your request! We will contact you shortly to confirm your appointment. (This is a demo - no data was sent).');
-                    bookingForm.reset(); // Clear the form fields
+                    // Disable button and show processing state
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending...';
+                    formMessage.style.display = 'none'; // Hide previous messages
+
+                    // Get form data
+                    const name = bookingForm.name.value.trim();
+                    const email = bookingForm.email.value.trim();
+                    const phone = bookingForm.phone.value.trim();
+                    const service = bookingForm.service.value.trim();
+                    const message = bookingForm.message.value.trim();
+
+                    // Basic validation (can be enhanced)
+                    if (!name || !email || !phone || !message) {
+                         displayFormMessage('Please fill out all required fields.', 'error');
+                         submitButton.disabled = false;
+                         submitButton.textContent = 'Send Request';
+                         return; // Stop submission
+                    }
+
+                    try {
+                        // Add a new document with a generated ID to Firestore
+                        await db.collection("bookingRequests").add({
+                            name: name,
+                            email: email,
+                            phone: phone,
+                            preferredService: service || 'Not specified', // Handle optional field
+                            message: message,
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp(), // Record time
+                            status: 'pending' // Initial status
+                        });
+
+                        // Success
+                        displayFormMessage('Request sent successfully! We will contact you soon to confirm.', 'success');
+                        bookingForm.reset(); // Clear the form
+
+                    } catch (error) {
+                        // Error
+                        console.error("Error adding document: ", error);
+                        displayFormMessage('Error sending request. Please try again or call us.', 'error');
+                    } finally {
+                        // Re-enable button regardless of success or error
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Send Request';
+                    }
                 });
+            } else {
+                 console.error("Booking form, Firestore instance, submit button or message element not found.");
+                 if(bookingForm) { // If form exists, maybe Firebase didn't init?
+                     displayFormMessage('Booking system is currently unavailable. Please call.', 'error');
+                 }
+            }
+
+            // Helper function to display form messages
+             function displayFormMessage(message, type) {
+                if (formMessage) {
+                     formMessage.textContent = message;
+                     formMessage.className = `form-submit-message ${type}`; // Add 'success' or 'error' class
+                     formMessage.style.display = 'block';
+                }
             }
 
         }); // End DOMContentLoaded
     </script>
 
 </body>
-</html>
+                                                                                                                      </html>
