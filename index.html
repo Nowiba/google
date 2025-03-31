@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Sharp Cut - Premium Barber Shop offering haircuts, shaves, and styling.">
+    <title>The Sharp Cut - Barber Shop</title>
+    <!-- Add Font Awesome for icons (optional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* --- Base Styles & Variables --- */
+        :root {
+            --primary-color: #b98d5a; /* Gold/Brown */
+            --secondary-color: #1a1a1a; /* Dark Gray/Black */
+            --light-color: #f4f4f4; /* Light Gray */
+            --white-color: #ffffff;
+            --dark-color: #333333;
+            --font-primary: 'Georgia', serif; /* Or another classic serif */
+            --font-secondary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --container-width: 1100px;
+            --section-padding: 60px 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Enable smooth scrolling */
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--white-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #a17a4a; /* Darker primary */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+            color: var(--secondary-color);
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.2rem; }
+        h3 { font-size: 1.5rem; }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: var(--section-padding);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+        }
+
+        .bg-light {
+            background-color: var(--light-color);
+        }
+
+        .bg-dark {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+        }
+        .bg-dark h2, .bg-dark h3 {
+            color: var(--white-color);
+        }
+        .bg-dark a {
+            color: var(--primary-color);
+        }
+        .bg-dark a:hover {
+            color: var(--white-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #a17a4a;
+            color: var(--white-color);
+        }
+
+        .grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .grid-2-cols {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid-3-cols {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-primary);
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .logo:hover {
+            color: var(--white-color);
+        }
+        /* Uncomment if using a logo image */
+        /*
+        .logo img {
+            height: 40px;
+            vertical-align: middle;
+        }
+        */
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: var(--white-color);
+            padding: 5px 0;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after { /* Optional active state */
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none; /* Hidden by default */
+            background: none;
+            border: none;
+            color: var(--white-color);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hero-bg.jpg') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white-color);
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            color: var(--white-color);
+            margin-bottom: 1rem;
+            font-size: 3.5rem; /* Larger for hero */
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        /* --- About Section --- */
+        .about-section .grid {
+            align-items: center;
+        }
+
+        .about-image img {
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- Services Section --- */
+        .service-card {
+            background-color: var(--white-color);
+            padding: 30px 25px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .service-icon {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        /* --- Gallery Section --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 250px; /* Fixed height */
+            object-fit: cover; /* Crop images to fit */
+            border-radius: 5px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        /* --- Testimonials Section --- */
+        .testimonial-card {
+            background-color: var(--white-color);
+            padding: 25px;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 1rem; /* Adjusted from grid gap */
+            border-radius: 0 5px 5px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .testimonial-card footer {
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-align: right;
+        }
+
+        /* --- Contact Section --- */
+        .contact-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .contact-grid {
+            align-items: flex-start; /* Align items to top */
+        }
+
+        .contact-details i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            width: 20px; /* Align icons */
+            text-align: center;
+        }
+
+        .contact-details p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary-color);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form input[type="tel"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .contact-form textarea {
+            resize: vertical; /* Allow vertical resize */
+        }
+
+        .contact-form button {
+            width: 100%;
+        }
+
+        .form-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .footer-social a {
+            color: var(--light-color);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer p {
+            margin-top: 1rem;
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            color: #aaa; /* Lighter gray for copyright */
+        }
+
+
+        /* --- Media Queries (Responsiveness) --- */
+
+        /* Tablets and smaller desktops */
+        @media (max-width: 992px) {
+            .grid-3-cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr; /* Stack contact info and form */
+            }
+            .contact-details {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Mobile devices */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            h3 { font-size: 1.3rem; }
+
+            .section-padding {
+                padding: 40px 0;
+            }
+
+            .grid-2-cols,
+            .grid-3-cols {
+                grid-template-columns: 1fr; /* Stack grid items */
+            }
+
+            .navbar {
+                position: relative; /* Needed for absolute positioning of nav links */
+            }
+
+            .nav-toggle {
+                display: block; /* Show hamburger */
+            }
+
+            .nav-links {
+                display: none; /* Hide links by default */
+                flex-direction: column;
+                position: absolute;
+                top: 100%; /* Position below header */
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary-color);
+                padding: 15px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.nav-active {
+                display: flex; /* Show links when active */
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            .nav-links a {
+                padding: 10px 20px;
+                display: block; /* Make entire area clickable */
+            }
+             .nav-links a::after {
+                 display: none; /* Remove underline effect on mobile nav */
+             }
+
+            .hero-section {
+                height: 60vh;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+             .hero-content p {
+                font-size: 1rem;
+            }
+
+            .about-image {
+                order: -1; /* Put image above text on mobile */
+                margin-bottom: 1.5rem;
+            }
+
+             .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller gallery items */
+                gap: 10px;
+            }
+            .gallery-grid img {
+                height: 150px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="#hero" class="logo">
+                <!-- <img src="images/logo.png" alt="The Sharp Cut Logo"> -->
+                 The Sharp Cut
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Book/Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content container">
+                <h1>Classic Cuts & Modern Styles</h1>
+                <p>Experience the art of traditional barbering with a modern twist.</p>
+                <a href="#contact" class="btn btn-primary">Book Appointment</a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about-section section-padding">
+            <div class="container grid grid-2-cols">
+                <div class="about-image">
+                    <img src="images/about-us.jpg" alt="Inside The Sharp Cut barber shop">
+                </div>
+                <div class="about-text">
+                    <h2>About The Sharp Cut</h2>
+                    <p>Founded in 2010, The Sharp Cut is more than just a place to get a haircut or shave; it's an experience. We are dedicated to preserving the time-honored traditions of barbering while embracing modern techniques.</p>
+                    <p>Our skilled barbers are passionate about their craft and committed to providing exceptional service in a relaxed and welcoming atmosphere. Sit back, relax, and let us take care of you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="grid grid-3-cols">
+                    <div class="service-card">
+                        <i class="fas fa-cut fa-3x service-icon"></i>
+                        <h3>Classic Haircut</h3>
+                        <p>A timeless cut tailored to your style, finished with a straight razor neck shave.</p>
+                        <span class="price">$35</span>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-soap fa-3x service-icon"></i> <!-- Using 'soap' for shave icon -->
+                        <h3>Hot Towel Shave</h3>
+                        <p>A traditional straight razor shave with hot towels, pre-shave oil, and rich lather.</p>
+                        <span class="price">$40</span>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-hand-scissors fa-3x service-icon"></i>
+                        <h3>Beard Trim & Shape</h3>
+                        <p>Expert shaping and trimming to keep your beard looking sharp and well-groomed.</p>
+                        <span class="price">$25</span>
+                    </div>
+                     <div class="service-card">
+                        <i class="fas fa-user-tie fa-3x service-icon"></i>
+                        <h3>The Works</h3>
+                        <p>Combine a classic haircut with a hot towel shave for the ultimate grooming experience.</p>
+                        <span class="price">$70</span>
+                    </div>
+                     <div class="service-card">
+                        <i class="fas fa-child fa-3x service-icon"></i>
+                        <h3>Kid's Cut (Under 12)</h3>
+                        <p>Stylish and comfortable cuts for the young gentlemen.</p>
+                        <span class="price">$25</span>
+                    </div>
+                     <div class="service-card">
+                        <i class="fas fa-palette fa-3x service-icon"></i> <!-- Using 'palette' for color -->
+                        <h3>Hair Coloring</h3>
+                        <p>Subtle or bold coloring services to enhance your look (consultation required).</p>
+                        <span class="price">Starts at $50</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section section-padding">
+            <div class="container">
+                <h2 class="section-title">Style Gallery</h2>
+                <div class="gallery-grid">
+                    <img src="images/gallery1.jpg" alt="Stylish haircut example 1">
+                    <img src="images/gallery2.jpg" alt="Stylish haircut example 2">
+                    <img src="images/gallery3.jpg" alt="Beard trim example">
+                    <img src="images/gallery4.jpg" alt="Stylish haircut example 4">
+                     <!-- Add more images as needed -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials-section section-padding bg-light">
+             <div class="container">
+                <h2 class="section-title">What Our Clients Say</h2>
+                <div class="grid grid-2-cols">
+                    <blockquote class="testimonial-card">
+                        <p>"Best haircut I've had in years! Professional staff, great atmosphere, and a perfect cut. Highly recommend The Sharp Cut."</p>
+                        <footer>- John D.</footer>
+                    </blockquote>
+                    <blockquote class="testimonial-card">
+                        <p>"The hot towel shave was incredibly relaxing and expertly done. I left feeling refreshed and looking sharp. Will definitely be back."</p>
+                        <footer>- Michael S.</footer>
+                    </blockquote>
+                     <blockquote class="testimonial-card">
+                        <p>"Took my son for his first proper barber experience. They were patient, friendly, and gave him a fantastic cut. He loved it!"</p>
+                        <footer>- Sarah K.</footer>
+                    </blockquote>
+                     <blockquote class="testimonial-card">
+                        <p>"Consistent quality every single time. The barbers really know their stuff and take pride in their work. My go-to spot."</p>
+                        <footer>- David R.</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact/Booking Section -->
+        <section id="contact" class="contact-section section-padding">
+            <div class="container">
+                <h2 class="section-title">Book Your Appointment</h2>
+                <p class="contact-intro">Ready for a fresh look? Call us or fill out the form below to request an appointment. Walk-ins welcome based on availability.</p>
+                <div class="grid grid-2-cols contact-grid">
+                    <div class="contact-details">
+                        <h3>Contact Information</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Barber Street, Anytown, ST 12345</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+1234567890">(123) 456-7890</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:info@thesharpcut.com">info@thesharpcut.com</a></p>
+                        <h3>Opening Hours</h3>
+                        <p>Mon - Fri: 9:00 AM - 7:00 PM</p>
+                        <p>Saturday: 9:00 AM - 5:00 PM</p>
+                        <p>Sunday: Closed</p>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Send Us a Message</h3>
+                        <form id="booking-form">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone (Optional):</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                             <div class="form-group">
+                                <label for="service">Preferred Service (Optional):</label>
+                                <input type="text" id="service" name="service">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message/Preferred Date & Time:</label>
+                                <textarea id="message" name="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Request</button>
+                            <p class="form-note">Note: This form sends a request. We will contact you to confirm your appointment.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer section-padding bg-dark">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p>© <span id="year"></span> The Sharp Cut. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Responsive Navigation ---
+            const navToggle = document.getElementById('nav-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('nav-active');
+
+                    // Toggle aria-expanded attribute for accessibility
+                    const expanded = navLinks.classList.contains('nav-active');
+                    navToggle.setAttribute('aria-expanded', expanded);
+
+                    // Optional: Change hamburger icon to 'X'
+                     const icon = navToggle.querySelector('i');
+                     if (expanded) {
+                         icon.classList.remove('fa-bars');
+                         icon.classList.add('fa-times');
+                     } else {
+                         icon.classList.remove('fa-times');
+                         icon.classList.add('fa-bars');
+                     }
+                });
+
+                // Close mobile nav when a link is clicked
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navLinks.classList.contains('nav-active')) {
+                            navLinks.classList.remove('nav-active');
+                            navToggle.setAttribute('aria-expanded', 'false');
+                             const icon = navToggle.querySelector('i');
+                             icon.classList.remove('fa-times');
+                             icon.classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
+
+            // --- Smooth Scrolling ---
+            // CSS `scroll-behavior: smooth;` in the <style> section handles this.
+            // No additional JS needed for basic smooth scroll.
+
+
+            // --- Update Footer Year ---
+            const yearSpan = document.getElementById('year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
+            // --- Basic Form Submission Simulation ---
+            // Prevents actual submission and shows a simple message
+            // IMPORTANT: This does NOT actually send any data. You need a backend for that.
+            const bookingForm = document.getElementById('booking-form');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', (e) => {
+                    e.preventDefault(); // Stop the form from submitting traditionally
+
+                    // You can add more validation here if needed
+
+                    alert('Thank you for your request! We will contact you shortly to confirm your appointment. (This is a demo - no data was sent).');
+                    bookingForm.reset(); // Clear the form fields
+                });
+            }
+
+        }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>
